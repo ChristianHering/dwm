@@ -6,8 +6,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "monospace:size=13", "JoyPixels:pixelsize=13:antialias=true:autohint=true" };
+static const char dmenufont[]       = "monospace:size=13";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -48,15 +48,15 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
-	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
+	{ MOD, XK_a,     ACTION##stack, {.i = INC(+1) } }, \
+	{ MOD, XK_d,     ACTION##stack, {.i = INC(-1) } }, \
 	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
 	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
 	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
@@ -92,59 +92,26 @@ ResourcePref resources[] = {
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = {
-	"gsdwm -n 1 -a $BUTTON",  "gsdwm -n 2 -a $BUTTON",
-	"gsdwm -n 3 -a $BUTTON",  "gsdwm -n 4 -a $BUTTON",
-	"gsdwm -n 5 -a $BUTTON",  "gsdwm -n 6 -a $BUTTON",
-	"gsdwm -n 7 -a $BUTTON",  "gsdwm -n 8 -a $BUTTON",
-	"gsdwm -n 9 -a $BUTTON",  "gsdwm -n 10 -a $BUTTON",
-	"gsdwm -n 11 -a $BUTTON", "gsdwm -n 12 -a $BUTTON",
-	"gsdwm -n 13 -a $BUTTON", "gsdwm -n 14 -a $BUTTON",
-	"gsdwm -n 15 -a $BUTTON", "gsdwm -n 16 -a $BUTTON",
-	"gsdwm -n 17 -a $BUTTON", "gsdwm -n 18 -a $BUTTON",
-	"gsdwm -n 19 -a $BUTTON", "gsdwm -n 20 -a $BUTTON",
-	"gsdwm -n 21 -a $BUTTON", "gsdwm -n 22 -a $BUTTON",
-	"gsdwm -n 23 -a $BUTTON", "gsdwm -n 24 -a $BUTTON",
-	"gsdwm -n 25 -a $BUTTON", "gsdwm -n 26 -a $BUTTON",
-	"gsdwm -n 27 -a $BUTTON", "gsdwm -n 28 -a $BUTTON",
-	"gsdwm -n 29 -a $BUTTON", "gsdwm -n 30 -a $BUTTON",
-	"gsdwm -n 31 -a $BUTTON", "gsdwm -n 32 -a $BUTTON",
-	"gsdwm -n 33 -a $BUTTON", "gsdwm -n 34 -a $BUTTON",
-	"gsdwm -n 35 -a $BUTTON", "gsdwm -n 36 -a $BUTTON",
-	"gsdwm -n 37 -a $BUTTON", "gsdwm -n 38 -a $BUTTON",
-	"gsdwm -n 39 -a $BUTTON", "gsdwm -n 40 -a $BUTTON",
-	"gsdwm -n 41 -a $BUTTON", "gsdwm -n 42 -a $BUTTON",
-	"gsdwm -n 43 -a $BUTTON", "gsdwm -n 44 -a $BUTTON",
-	"gsdwm -n 45 -a $BUTTON", "gsdwm -n 46 -a $BUTTON",
-	"gsdwm -n 47 -a $BUTTON", "gsdwm -n 48 -a $BUTTON",
-	"gsdwm -n 49 -a $BUTTON", "gsdwm -n 50 -a $BUTTON",
+	{ "wget http://localhost:1058/eventSection/0/eventButton/$BUTTON", 1 },
+	{ "wget http://localhost:1058/eventSection/1/eventButton/$BUTTON", 2 },
+	{ "wget http://localhost:1058/eventSection/2/eventButton/$BUTTON", 3 },
+	{ "wget http://localhost:1058/eventSection/3/eventButton/$BUTTON", 4 },
+	{ "wget http://localhost:1058/eventSection/4/eventButton/$BUTTON", 5 },
+	{ "wget http://localhost:1058/eventSection/5/eventButton/$BUTTON", 6 },
+	{ "wget http://localhost:1058/eventSection/6/eventButton/$BUTTON", 7 },
+	{ "wget http://localhost:1058/eventSection/7/eventButton/$BUTTON", 8 },
+	{ "wget http://localhost:1058/eventSection/8/eventButton/$BUTTON", 9 },
+	{ "wget http://localhost:1058/eventSection/9/eventButton/$BUTTON", 10 },
 };
 static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	STACKKEYS(MODKEY,                          focus)
-	STACKKEYS(MODKEY|ShiftMask,                push)
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+//  modifier                        key        function        argument
+
+	//stacker patch
+	STACKKEYS(MODKEY,                          focus) //TODO: Moves Window Up In Focus, Changes Context To Fullscreen If Master
+	STACKKEYS(MODKEY|ShiftMask,                push) //TODO: Moves Window Down In Focus, Hides Window Behind New If Fullscreen
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -154,7 +121,53 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_BackSpace, quit,        {0} },
+
+	//System Keybindings
+	{ MODKEY,                       XK_q,      killclient,	   {0} }, //Kills The Window In Focus
+	{ MODKEY|ShiftMask,             XK_q,      spawn,	       SHCMD("sysact") }, //Launches DWM Options (Renew/Quit)
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} }, //Forcefully Exits DWM
+	{ MODKEY,                       XK_r,      spawn,          SHCMD("dmenu_run") }, //Launch "run" (dMenu)
+	{ MODKEY,                       XK_space,  zoom,           {0} }, //Makes The Focused Window The Master Window
+	{ MODKEY,                       XK_Left,   tagmon,         {.i = -1 } }, //Send Window In Focus To The Left
+	{ MODKEY,                       XK_Right,  tagmon,         {.i = +1 } }, //Send Window In Focus To The Right
+	{ MODKEY|ShiftMask,             XK_Left,   focusmon,       {.i = -1 } }, //Moves Focus To Left Display
+	{ MODKEY|ShiftMask,             XK_Right,  focusmon,       {.i = +1 } }, //Moves Focus To Right Display
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   setmfact,       {.f = -0.01} }, //Moves The Window Devider To The Left
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  setmfact,       {.f = +0.01} }, //Moves The Window Devider To The Right
+	{ MODKEY|Mod1Mask,              XK_f,      togglefloating, {0} }, //Toggles Floating For The Focused Window
+//	{ MODKEY,                       XK_space,  setlayout,      {0} }, //Change To The Priviously Used Layout
+//	{ MODKEY,                       XK_f,      setfullscreen,  {0} }, //Toggle Fullscreen Mode
+//	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("") }, //Copy
+//	{ MODKEY|ShiftMask,             XK_x,      spawn,          SHCMD("") }, //Cut
+//	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("") }, //Paste
+//	{ MODKEY,                       XK_Tab,    {0},            {0} }, //List Active Programs in Tag Tab
+//	{ MODKEY,                       XK_h,      {0},            {0} }, //Shows Desktop/Hides All Applications
+
+	//Audio
+	{ MODKEY,                       XK_m,      spawn,          SHCMD("pamixer -t") }, //Mute Audio
+	{ MODKEY,                       XK_period, spawn,          SHCMD("pamixer --allow-boost -i 3") }, //Increase Audio Volume
+	{ MODKEY,                       XK_comma,  spawn,          SHCMD("pamixer --allow-boost -d 3") }, //Decrease Audio Volume
+
+	//Screen Capture
+	{ MODKEY,                       XK_Print,  spawn,          SHCMD("flameshot gui") }, //Launch FlameShot (ScreenShot tool)
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("flameshot gui") }, //Launch FlameShot (ScreenShot tool)
+	{ MODKEY|ShiftMask,             XK_Print,  spawn,          SHCMD("peek") }, //Launch Peek (Video Capture tool)
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("peek") }, //Launch Peek (Video Capture tool)
+
+	//Application Keybindings
+	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty") }, //Open Terminal
+	{ MODKEY,                       XK_w,      spawn,          SHCMD("brave") }, //Open Web Browser
+	{ MODKEY|Mod1Mask,              XK_w,      spawn,          SHCMD("firefox") }, //Open Alternate Web Browser
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor-browser") }, //Open Tor
+	{ MODKEY,                       XK_h,      spawn,          SHCMD("alacritty -e htop") }, //Open htop
+	{ MODKEY,                       XK_g,      spawn,          SHCMD("steam") }, //Launch Games (Steam)
+	{ MODKEY,                       XK_o,      spawn,          SHCMD("obs") }, //Launch OBS
+	{ MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("olive") }, //Launch Olive (Video Editor)
+	{ MODKEY,                       XK_c,      spawn,          SHCMD("alacritty -e bc -l") }, //Open Calculator
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("alacritty -e mc") }, //Open File Manager
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor") },
+
+//	{ MODKEY,                       XK_p,      togglebar,      {0} },
 };
 
 /* button definitions */

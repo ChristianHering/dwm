@@ -1,48 +1,63 @@
-dwm - dynamic window manager
-============================
-dwm is an extremely fast, small, and dynamic window manager for X.
+DWM
+===========
 
+This repository holds the source for my build of dwm.
 
-Requirements
+It provides:
+
+  * A simple working enviornment for people running Xorg
+  * A base to work off of for a more featureful dwm build
+  * An example of how [GoDSB](https://github.com/ChristianHering/GoDSB) can be used within dwm
+
+Table of Contents:
+
+  * [About](#about)
+  * [Installing and Compiling from Source](#installing-and-compiling-from-source)
+  * [Contributing](#contributing)
+  * [License](#license)
+
+About
+-----
+
+[Dwm](https://dwm.suckless.org/) is a dynamic, source based window manager for [X11](https://www.x.org/wiki/). It relys heavily on keybindings to do basic operations, and promotes workflow efficiency.
+
+Installing and Compiling from Source
 ------------
-In order to build dwm you need the Xlib header files.
 
+If you're looking to compile from source, you'll need the following:
 
-Installation
+  * [Git](https://archlinux.org/packages/extra/x86_64/git/), [Make](https://archlinux.org/packages/core/x86_64/make/) and [GCC](https://archlinux.org/packages/core/x86_64/gcc/) installed from arch's [base-devel](https://archlinux.org/groups/x86_64/base-devel/) package group. (Your distribution will likely have a similar package)
+  *  installed.
+  * [Xlib header files](https://archlinux.org/packages/extra/x86_64/libx11/) on the system.
+  * [libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) if you want colored emoji rendering (not having this may induce crashes when emoji's are rendered unless you uncomment the 'iscol' block of code in drw.c)
+  * [ttf-joypixels](https://archlinux.org/packages/community/any/ttf-joypixels/) or another font that supports unicode emojis. Fonts can be changed in [config.h](config.h)
+
+First build dwm so we can execute it on X startup:
+
+  * `make clean install`
+
+Add the following to your .xinitrc file:
+
+  * `exec dbus-launch dwm`
+
+Using 'dbus-launch' will allow tools like [flameshot](https://github.com/flameshot-org/flameshot) to work out of the box. You can run dwm without it, but may run into issues with some applications. (particularly screen capturing applications) Similar issues are encountered when using ssh-agent as well.
+
+If you would like dwm to restart automatically on exit (useful during development) add this instead:
+
+```Bash
+while true; do
+	exec dbus-launch dwm >/dev/null 2>&1
+done
+```
+
+Then just quit out of your current enviornment and login with dwm! Win + T gets you a terminal; any other keybindings can be found in [config.h](config.h)
+
+Contributing
 ------------
-Edit config.mk to match your local setup (dwm is installed into
-the /usr/local namespace by default).
 
-Afterwards enter the following command to build and install dwm (if
-necessary as root):
+Contributions are always welcome. If you're interested in contributing, send me an email or submit a PR.
 
-    make clean install
+License
+-------
 
-
-Running dwm
------------
-Add the following line to your .xinitrc to start dwm using startx:
-
-    exec dwm
-
-In order to connect dwm to a specific display, make sure that
-the DISPLAY environment variable is set correctly, e.g.:
-
-    DISPLAY=foo.bar:1 exec dwm
-
-(This will start dwm on display :1 of the host foo.bar.)
-
-In order to display status info in the bar, you can do something
-like this in your .xinitrc:
-
-    while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
-    do
-    	sleep 1
-    done &
-    exec dwm
-
-
-Configuration
--------------
-The configuration of dwm is done by creating a custom config.h
-and (re)compiling the source code.
+Feel free to use this project in any way you like. Please refer to the [license](/docs/LICENSE) file for more information.
