@@ -55,13 +55,13 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD, XK_a,     ACTION##stack, {.i = INC(+1) } }, \
-	{ MOD, XK_d,     ACTION##stack, {.i = INC(-1) } }, \
+	{ MOD, XK_d,     ACTION##stack, {.i = INC(+1) } }, \
+	{ MOD, XK_a,     ACTION##stack, {.i = INC(-1) } }, \
 	{ MOD, XK_grave, ACTION##stack, {.i = PREVSEL } }, \
-	{ MOD, XK_q,     ACTION##stack, {.i = 0 } }, \
-	{ MOD, XK_a,     ACTION##stack, {.i = 1 } }, \
-	{ MOD, XK_z,     ACTION##stack, {.i = 2 } }, \
-	{ MOD, XK_x,     ACTION##stack, {.i = -1 } },
+	{ MOD, XK_p,     ACTION##stack, {.i = 0 } }, \
+	{ MOD, XK_p,     ACTION##stack, {.i = 1 } }, \
+	{ MOD, XK_p,     ACTION##stack, {.i = 2 } }, \
+	{ MOD, XK_p,     ACTION##stack, {.i = -1 } },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -109,8 +109,8 @@ static Key keys[] = {
 //  modifier                        key        function        argument
 
 	//stacker patch
-	STACKKEYS(MODKEY,                          focus) //TODO: Moves Window Up In Focus, Changes Context To Fullscreen If Master
-	STACKKEYS(MODKEY|ShiftMask,                push) //TODO: Moves Window Down In Focus, Hides Window Behind New If Fullscreen
+	STACKKEYS(MODKEY|ShiftMask,                focus) //TODO: Moves Window Up In Focus, Changes Context To Fullscreen If Master
+	STACKKEYS(MODKEY,                          push) //TODO: Moves Window Down In Focus, Hides Window Behind New If Fullscreen
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
@@ -156,6 +156,7 @@ static Key keys[] = {
 
 	//Application Keybindings
 	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty") }, //Open Terminal
+	{ MODKEY|Mod1Mask,              XK_t,      spawn,          SHCMD("st") }, //Open Alternate Terminal
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("brave") }, //Open Web Browser
 	{ MODKEY|Mod1Mask,              XK_w,      spawn,          SHCMD("firefox") }, //Open Alternate Web Browser
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor-browser") }, //Open Tor
@@ -163,7 +164,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("steam") }, //Launch Games (Steam)
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("obs") }, //Launch OBS
 	{ MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("olive") }, //Launch Olive (Video Editor)
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("alacritty -e bc -l") }, //Open Calculator
+	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") }, //Open VS Code
+	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD("alacritty -e bc -l") }, //Open Calculator
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("alacritty -e mc") }, //Open File Manager
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor") },
 
