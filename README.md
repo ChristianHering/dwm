@@ -26,11 +26,10 @@ Installing and Compiling from Source
 
 If you're looking to compile from source, you'll need the following:
 
-  * [Git](https://archlinux.org/packages/extra/x86_64/git/), [Make](https://archlinux.org/packages/core/x86_64/make/) and [GCC](https://archlinux.org/packages/core/x86_64/gcc/) installed from arch's [base-devel](https://archlinux.org/groups/x86_64/base-devel/) package group. (Your distribution will likely have a similar package)
-  *  installed.
+  * [Git](https://archlinux.org/packages/extra/x86_64/git/), [Make](https://archlinux.org/packages/core/x86_64/make/) and [GCC](https://archlinux.org/packages/core/x86_64/gcc/) installed from arch's [base-devel](https://archlinux.org/groups/x86_64/base-devel/) package group. Your distribution will likely have similar packages.
   * [Xlib header files](https://archlinux.org/packages/extra/x86_64/libx11/) on the system.
   * [libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) if you want colored emoji rendering (not having this may induce crashes when emoji's are rendered unless you uncomment the 'iscol' block of code in drw.c)
-  * [ttf-joypixels](https://archlinux.org/packages/community/any/ttf-joypixels/) or another font that supports unicode emojis. Fonts can be changed in [config.h](config.h)
+  * [noto-fonts-emoji](https://archlinux.org/packages/extra/any/noto-fonts-emoji/) or [another font](https://archlinux.org/packages/community/any/ttf-joypixels/) that supports unicode emojis. Fonts can be changed in [config.h](config.h)
 
 First build dwm so we can execute it on X startup:
 
