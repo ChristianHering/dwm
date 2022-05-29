@@ -6,8 +6,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=13", "JoyPixels:pixelsize=13:antialias=true:autohint=true" };
-static const char dmenufont[]       = "monospace:size=13";
+static const char *fonts[]          = { "Inconsolata-g:size=13", "NotoColorEmoji:pixelsize=13:antialias=true:autohint=true" };
+static const char dmenufont[]       = "Inconsolata-g:size=13";
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -124,14 +124,13 @@ static Key keys[] = {
 
 	//System Keybindings
 	{ MODKEY,                       XK_q,      killclient,	   {0} }, //Kills The Window In Focus
-	{ MODKEY|ShiftMask,             XK_q,      spawn,	       SHCMD("sysact") }, //Launches DWM Options (Renew/Quit)
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} }, //Forcefully Exits DWM
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, //Forcefully Exits DWM
 	{ MODKEY,                       XK_r,      spawn,          SHCMD("dmenu_run") }, //Launch "run" (dMenu)
 	{ MODKEY,                       XK_space,  zoom,           {0} }, //Makes The Focused Window The Master Window
-	{ MODKEY,                       XK_Left,   tagmon,         {.i = -1 } }, //Send Window In Focus To The Left
-	{ MODKEY,                       XK_Right,  tagmon,         {.i = +1 } }, //Send Window In Focus To The Right
-	{ MODKEY|ShiftMask,             XK_Left,   focusmon,       {.i = -1 } }, //Moves Focus To Left Display
-	{ MODKEY|ShiftMask,             XK_Right,  focusmon,       {.i = +1 } }, //Moves Focus To Right Display
+	{ MODKEY,                       XK_Left,   tagmon,         {.i = +1 } }, //Send Window In Focus To The Left
+	{ MODKEY,                       XK_Right,  tagmon,         {.i = -1 } }, //Send Window In Focus To The Right
+	{ MODKEY|ShiftMask,             XK_Left,   focusmon,       {.i = +1 } }, //Moves Focus To Left Display
+	{ MODKEY|ShiftMask,             XK_Right,  focusmon,       {.i = -1 } }, //Moves Focus To Right Display
 	{ MODKEY|ControlMask|ShiftMask, XK_Left,   setmfact,       {.f = -0.01} }, //Moves The Window Devider To The Left
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  setmfact,       {.f = +0.01} }, //Moves The Window Devider To The Right
 	{ MODKEY|Mod1Mask,              XK_f,      togglefloating, {0} }, //Toggles Floating For The Focused Window
@@ -157,8 +156,9 @@ static Key keys[] = {
 	//Application Keybindings
 	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty") }, //Open Terminal
 	{ MODKEY|Mod1Mask,              XK_t,      spawn,          SHCMD("st") }, //Open Alternate Terminal
-	{ MODKEY,                       XK_w,      spawn,          SHCMD("brave") }, //Open Web Browser
-	{ MODKEY|Mod1Mask,              XK_w,      spawn,          SHCMD("firefox") }, //Open Alternate Web Browser
+	{ MODKEY,                       XK_w,      spawn,          SHCMD("librewolf") }, //Open Web Browser
+	{ MODKEY|Mod1Mask,              XK_w,      spawn,          SHCMD("brave") }, //Open Alternate Web Browser
+	{ MODKEY|ControlMask,           XK_w,      spawn,          SHCMD("firefox-esr") }, //Open Secondary Web Browser
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor-browser") }, //Open Tor
 	{ MODKEY,                       XK_h,      spawn,          SHCMD("alacritty -e htop") }, //Open htop
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("steam") }, //Launch Games (Steam)
@@ -169,7 +169,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("alacritty -e mc") }, //Open File Manager
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor") },
 
-//	{ MODKEY,                       XK_p,      togglebar,      {0} },
+  	{ MODKEY,                       XK_p,      togglebar,      {0} },
 };
 
 /* button definitions */
