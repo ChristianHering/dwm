@@ -66,6 +66,8 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+#define STATUSBAR "dwmblocks"
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
@@ -92,31 +94,16 @@ ResourcePref resources[] = {
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static char *statuscmds[] = {
-	"gsdwm -n 1 -a $BUTTON",  "gsdwm -n 2 -a $BUTTON",
-	"gsdwm -n 3 -a $BUTTON",  "gsdwm -n 4 -a $BUTTON",
-	"gsdwm -n 5 -a $BUTTON",  "gsdwm -n 6 -a $BUTTON",
-	"gsdwm -n 7 -a $BUTTON",  "gsdwm -n 8 -a $BUTTON",
-	"gsdwm -n 9 -a $BUTTON",  "gsdwm -n 10 -a $BUTTON",
-	"gsdwm -n 11 -a $BUTTON", "gsdwm -n 12 -a $BUTTON",
-	"gsdwm -n 13 -a $BUTTON", "gsdwm -n 14 -a $BUTTON",
-	"gsdwm -n 15 -a $BUTTON", "gsdwm -n 16 -a $BUTTON",
-	"gsdwm -n 17 -a $BUTTON", "gsdwm -n 18 -a $BUTTON",
-	"gsdwm -n 19 -a $BUTTON", "gsdwm -n 20 -a $BUTTON",
-	"gsdwm -n 21 -a $BUTTON", "gsdwm -n 22 -a $BUTTON",
-	"gsdwm -n 23 -a $BUTTON", "gsdwm -n 24 -a $BUTTON",
-	"gsdwm -n 25 -a $BUTTON", "gsdwm -n 26 -a $BUTTON",
-	"gsdwm -n 27 -a $BUTTON", "gsdwm -n 28 -a $BUTTON",
-	"gsdwm -n 29 -a $BUTTON", "gsdwm -n 30 -a $BUTTON",
-	"gsdwm -n 31 -a $BUTTON", "gsdwm -n 32 -a $BUTTON",
-	"gsdwm -n 33 -a $BUTTON", "gsdwm -n 34 -a $BUTTON",
-	"gsdwm -n 35 -a $BUTTON", "gsdwm -n 36 -a $BUTTON",
-	"gsdwm -n 37 -a $BUTTON", "gsdwm -n 38 -a $BUTTON",
-	"gsdwm -n 39 -a $BUTTON", "gsdwm -n 40 -a $BUTTON",
-	"gsdwm -n 41 -a $BUTTON", "gsdwm -n 42 -a $BUTTON",
-	"gsdwm -n 43 -a $BUTTON", "gsdwm -n 44 -a $BUTTON",
-	"gsdwm -n 45 -a $BUTTON", "gsdwm -n 46 -a $BUTTON",
-	"gsdwm -n 47 -a $BUTTON", "gsdwm -n 48 -a $BUTTON",
-	"gsdwm -n 49 -a $BUTTON", "gsdwm -n 50 -a $BUTTON",
+	{ "wget http://localhost:1058/eventSection/0/eventButton/$BUTTON", 1 },
+	{ "wget http://localhost:1058/eventSection/1/eventButton/$BUTTON", 2 },
+	{ "wget http://localhost:1058/eventSection/2/eventButton/$BUTTON", 3 },
+	{ "wget http://localhost:1058/eventSection/3/eventButton/$BUTTON", 4 },
+	{ "wget http://localhost:1058/eventSection/4/eventButton/$BUTTON", 5 },
+	{ "wget http://localhost:1058/eventSection/5/eventButton/$BUTTON", 6 },
+	{ "wget http://localhost:1058/eventSection/6/eventButton/$BUTTON", 7 },
+	{ "wget http://localhost:1058/eventSection/7/eventButton/$BUTTON", 8 },
+	{ "wget http://localhost:1058/eventSection/8/eventButton/$BUTTON", 9 },
+	{ "wget http://localhost:1058/eventSection/9/eventButton/$BUTTON", 10 },
 };
 static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
