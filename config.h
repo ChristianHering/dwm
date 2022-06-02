@@ -136,6 +136,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask|ShiftMask, XK_Left,   setmfact,       {.f = -0.01} }, //Moves The Window Devider To The Left
 	{ MODKEY|ControlMask|ShiftMask, XK_Right,  setmfact,       {.f = +0.01} }, //Moves The Window Devider To The Right
 	{ MODKEY|Mod1Mask,              XK_f,      togglefloating, {0} }, //Toggles Floating For The Focused Window
+	{ MODKEY,                       XK_p,      togglebar,      {0} }, //Toggles DWM Status Bar
 //	{ MODKEY,                       XK_space,  setlayout,      {0} }, //Change To The Priviously Used Layout
 //	{ MODKEY,                       XK_f,      setfullscreen,  {0} }, //Toggle Fullscreen Mode
 //	{ MODKEY|ShiftMask,             XK_c,      spawn,          SHCMD("") }, //Copy
@@ -169,9 +170,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") }, //Open VS Code
 	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD("alacritty -e bc -l") }, //Open Calculator
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("alacritty -e mc") }, //Open File Manager
-	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor") },
-
-  	{ MODKEY,                       XK_p,      togglebar,      {0} },
 };
 
 /* button definitions */
