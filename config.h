@@ -148,6 +148,16 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, spawn,          SHCMD("pamixer --allow-boost -i 3") }, //Increase Audio Volume
 	{ MODKEY,                       XK_comma,  spawn,          SHCMD("pamixer --allow-boost -d 3") }, //Decrease Audio Volume
 
+	{ MODKEY,             			XK_F12,	   spawn,		   SHCMD("for i in {1..$(mpc outputs | wc -l)}; do mpc toggleoutput $i; done") }, //Mute Music
+	{ MODKEY,             			XK_F11,	   spawn,		   SHCMD("mpc volume +1") }, //Increase Music Volume
+	{ MODKEY,             			XK_F10,	   spawn,		   SHCMD("mpc volume -1") }, //Decrease Music Volume
+	{ MODKEY,             			XK_F9,	   spawn,		   SHCMD("mpc shuffle") }, //Shuffle Playlist
+	{ MODKEY|ShiftMask,    			XK_F9,	   spawn,		   SHCMD("mpc repeat") }, //Toggle MPC Repeat Mode
+	{ MODKEY,             			XK_F8,	   spawn,		   SHCMD("mpc next") }, //Play Next Song
+	{ MODKEY,             			XK_F7,	   spawn,		   SHCMD("mpc toggle") }, //Play/Pause Music
+	{ MODKEY,             			XK_F6,	   spawn,		   SHCMD("mpc prev") }, //Play Previous Song
+	{ MODKEY,             			XK_F5,	   spawn,		   SHCMD("mpc stop") }, //Stop Music
+
 	//Screen Capture
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("flameshot gui") }, //Launch FlameShot (ScreenShot tool)
 	{ MODKEY,                       XK_s,      spawn,          SHCMD("flameshot gui") }, //Launch FlameShot (ScreenShot tool)
