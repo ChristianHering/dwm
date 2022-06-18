@@ -68,8 +68,6 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
-#define STATUSBAR "dwmblocks"
-
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
@@ -95,7 +93,7 @@ ResourcePref resources[] = {
 };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
-static char *statuscmds[] = {
+static const StatusCmd statuscmds[] = {
 	{ "wget http://localhost:1058/eventSection/0/eventButton/$BUTTON", 1 },
 	{ "wget http://localhost:1058/eventSection/1/eventButton/$BUTTON", 2 },
 	{ "wget http://localhost:1058/eventSection/2/eventButton/$BUTTON", 3 },
@@ -107,7 +105,7 @@ static char *statuscmds[] = {
 	{ "wget http://localhost:1058/eventSection/8/eventButton/$BUTTON", 9 },
 	{ "wget http://localhost:1058/eventSection/9/eventButton/$BUTTON", 10 },
 };
-static char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
+static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
