@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#define TERMINAL "alacritty" //TODO: Pass In TERMINAL from environment variable $TERMINAL
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -69,7 +71,6 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -125,7 +126,7 @@ static Key keys[] = {
 	//System Keybindings
 	{ MODKEY,                       XK_q,      killclient,	   {0} }, //Kills The Window In Focus
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} }, //Forcefully Exits DWM
-	{ MODKEY,                       XK_r,      spawn,          SHCMD("dmenu_run") }, //Launch "run" (dMenu)
+	{ MODKEY,                       XK_r,      spawn,          { .v = dmenucmd } }, //Launch "run" (dMenu)
 	{ MODKEY,                       XK_space,  zoom,           {0} }, //Makes The Focused Window The Master Window
 	{ MODKEY,                       XK_Left,   tagmon,         {.i = +1 } }, //Send Window In Focus To The Left
 	{ MODKEY,                       XK_Right,  tagmon,         {.i = -1 } }, //Send Window In Focus To The Right
@@ -165,19 +166,19 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("peek") }, //Launch Peek (Video Capture tool)
 
 	//Application Keybindings
-	{ MODKEY,                       XK_t,      spawn,          SHCMD("alacritty") }, //Open Terminal
+	{ MODKEY,                       XK_t,      spawn,          SHCMD(TERMINAL) }, //Open Terminal
 	{ MODKEY|Mod1Mask,              XK_t,      spawn,          SHCMD("st") }, //Open Alternate Terminal
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("librewolf") }, //Open Web Browser
 	{ MODKEY|Mod1Mask,              XK_w,      spawn,          SHCMD("brave") }, //Open Alternate Web Browser
 	{ MODKEY|ControlMask,           XK_w,      spawn,          SHCMD("firefox-esr") }, //Open Secondary Web Browser
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("tor-browser") }, //Open Tor
-	{ MODKEY,                       XK_h,      spawn,          SHCMD("alacritty -e htop") }, //Open htop
+	{ MODKEY,                       XK_h,      spawn,          SHCMD(TERMINAL " -e htop") }, //Open htop
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("steam") }, //Launch Games (Steam)
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("obs") }, //Launch OBS
 	{ MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("olive") }, //Launch Olive (Video Editor)
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") }, //Open VS Code
-	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD("alacritty -e bc -l") }, //Open Calculator
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD("alacritty -e mc") }, //Open File Manager
+	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD(TERMINAL " -e bc -l") }, //Open Calculator
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD(TERMINAL " -e mc") }, //Open File Manager
 };
 
 /* button definitions */
