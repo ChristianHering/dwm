@@ -176,7 +176,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      spawn,          SHCMD("steam") }, //Launch Games (Steam)
 	{ MODKEY,                       XK_o,      spawn,          SHCMD("obs") }, //Launch OBS
 	{ MODKEY|ShiftMask,             XK_o,      spawn,          SHCMD("olive") }, //Launch Olive (Video Editor)
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("code") }, //Open VS Code
+	{ MODKEY,                       XK_c,      spawn,          SHCMD("codium") }, //Open VS Code
 	{ MODKEY|Mod1Mask,              XK_c,      spawn,          SHCMD(TERMINAL " -e bc -l") }, //Open Calculator
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          SHCMD(TERMINAL " -e mc") }, //Open File Manager
 };
